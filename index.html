@@ -205,6 +205,116 @@
         gap: 16px;
       }
 
+      /* Hamburger toggle */
+      .nav__toggle {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--text);
+        padding: 0;
+      }
+      .nav__toggle:focus-visible {
+        outline: 2px solid color-mix(in oklab, var(--primary) 60%, transparent);
+        outline-offset: 2px;
+      }
+      .nav__toggle .bar {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: currentColor;
+        border-radius: 2px;
+        transition: transform 0.25s ease, opacity 0.2s ease;
+      }
+      .nav__toggle .bar + .bar {
+        margin-top: 5px;
+      }
+      .nav[data-open="true"] .nav__toggle .bar:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .nav[data-open="true"] .nav__toggle .bar:nth-child(2) {
+        opacity: 0;
+      }
+      .nav[data-open="true"] .nav__toggle .bar:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      /* Toggle icons */
+      .nav__toggle svg {
+        width: 22px;
+        height: 22px;
+        display: block;
+      }
+      .nav__toggle .icon--close {
+        display: none;
+      }
+      .nav[data-open="true"] .nav__toggle .icon--menu {
+        display: none;
+      }
+      .nav[data-open="true"] .nav__toggle .icon--close {
+        display: block;
+      }
+
+      /* Responsive menu container */
+      .nav__menu {
+        display: flex;
+        align-items: center;
+        gap: 8px 10px;
+      }
+      /* Desktop layout */
+      @media (min-width: 881px) {
+        .nav__menu {
+          display: flex;
+        }
+      }
+      /* Mobile layout */
+      @media (max-width: 880px) {
+        .nav__toggle {
+          display: inline-flex;
+        }
+        .nav__menu {
+          position: fixed;
+          left: 0;
+          right: 0;
+          top: 64px; /* below navbar */
+          background: color-mix(in oklab, var(--surface) 96%, transparent);
+          border-bottom: 1px solid var(--border);
+          box-shadow: var(--shadow);
+          display: grid;
+          gap: 4px;
+          padding: 12px 16px 18px;
+          transform: translateY(-6px);
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .nav[data-open="true"] .nav__menu {
+          transform: none;
+          opacity: 1;
+          pointer-events: auto;
+        }
+        .nav__menu nav {
+          display: grid;
+        }
+        .nav__menu nav a.link {
+          padding: 12px 10px;
+          border-radius: 10px;
+          font-size: 1.02rem;
+        }
+        .nav__menu .nav__actions {
+          display: grid;
+          grid-template-columns: 1fr;
+          margin-top: 4px;
+        }
+        .nav__menu .btn {
+          width: 100%;
+        }
+      }
+
       .brand {
         display: inline-flex;
         align-items: center;
@@ -531,14 +641,24 @@
           </span>
           <span>세붕이</span>
         </div>
-        <nav aria-label="주요">
-          <a class="link" href="#about">About</a>
-          <a class="link" href="#activities">활동</a>
-          <a class="link" href="#stats">성과</a>
-          <a class="link" href="#members">멤버</a>
-        </nav>
-        <div class="nav__actions">
-          <a class="btn btn--primary" href="https://open.kakao.com/o/gXogQnJe" aria-label="멤버 살펴보기">합류하기</a>
+        <button class="nav__toggle" id="nav-toggle" aria-label="메뉴 열기" aria-controls="nav-menu" aria-expanded="false">
+          <svg class="icon icon--menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 6h18M3 12h18M3 18h18" />
+          </svg>
+          <svg class="icon icon--close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 6l12 12M6 18L18 6" />
+          </svg>
+        </button>
+        <div class="nav__menu" id="nav-menu">
+          <nav aria-label="주요">
+            <a class="link" href="#about">About</a>
+            <a class="link" href="#activities">활동</a>
+            <a class="link" href="#stats">성과</a>
+            <a class="link" href="#members">멤버</a>
+          </nav>
+          <div class="nav__actions">
+            <a class="btn btn--primary" href="https://open.kakao.com/o/gXogQnJe" aria-label="멤버 살펴보기">합류하기</a>
+          </div>
         </div>
       </div>
     </header>
@@ -824,6 +944,33 @@
           target.scrollIntoView({ behavior: "smooth", block: "start" });
           history.pushState(null, "", `#${id}`);
         }
+      });
+
+      // ===== Mobile nav (hamburger) =====
+      const navHeader = document.querySelector("header.nav");
+      const navToggle = document.getElementById("nav-toggle");
+      const navMenu = document.getElementById("nav-menu");
+      function setNavOpen(open) {
+        if (!navHeader || !navToggle) return;
+        navHeader.dataset.open = open ? "true" : "false";
+        navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+  navToggle.setAttribute("aria-label", open ? "메뉴 닫기" : "메뉴 열기");
+      }
+      navToggle?.addEventListener("click", () => {
+        const isOpen = navHeader?.dataset.open === "true";
+        setNavOpen(!isOpen);
+      });
+      // Close when clicking a link in the menu
+      navMenu?.addEventListener("click", (e) => {
+        if (e.target.closest("a")) setNavOpen(false);
+      });
+      // Close with Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") setNavOpen(false);
+      });
+      // Ensure closed when switching to desktop
+      matchMedia("(min-width: 881px)").addEventListener("change", (e) => {
+        if (e.matches) setNavOpen(false);
       });
     </script>
   </body>
