@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>세붕이 BLOG | {{ .Title }} </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../../public/img/logo_white.png" />
+    <link rel="stylesheet" href="../../public/css/style.css" />
+</head>
+<body>
+    <a class="skip" href="#main">본문으로 건너뛰기</a>
+
+    <header class="nav" role="banner">
+      <div class="container nav__inner">
+        <div class="brand" aria-label="세명컴퓨터고등학교 개발 문화">
+          <a href="../../index.html" style="display: contents;">
+            <span class="logo-wrap" aria-hidden="true">
+              <img
+                src="../../public/img/logo_white.png"
+                class="logo"
+                alt="세붕이 로고"
+                width="22"
+                height="22"
+                decoding="async"
+              />
+            </span>
+            <span>세붕이</span>
+          </a>
+        </div>
+        <button
+          class="nav__toggle"
+          id="nav-toggle"
+          aria-label="메뉴 열기"
+          aria-controls="nav-menu"
+          aria-expanded="false"
+        >
+          <svg
+            class="icon icon--menu"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M3 6h18M3 12h18M3 18h18" />
+          </svg>
+          <svg
+            class="icon icon--close"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M6 6l12 12M6 18L18 6" />
+          </svg>
+        </button>
+        <div class="nav__menu" id="nav-menu">
+          <nav aria-label="주요">
+            <a class="link" href="../../index.html">About</a>
+            <a class="link active" href="../index.html">블로그</a>
+          </nav>
+          <div class="nav__actions">
+            <a class="btn btn--primary" href="https://open.kakao.com/o/gXogQnJe" aria-label="멤버 살펴보기">합류하기</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+        <article>
+            <header class="article-header container">
+                <h1>{{ .Title }}</h1>
+                <div class="article-meta">
+                    <span>By 
+                        {{if .Author.URL}}
+                            <a href="{{.Author.URL}}" target="_blank">{{.Author.Name}}</a>
+                        {{else}}
+                            {{.Author.Name}}
+                        {{end}}
+                    </span> ·
+                    <time datetime="{{ .Date }}">{{ .Date }}</time> ·
+                    <span>읽는 데 {{ .ReadingTime }}</span>
+                </div>
+            </header>
+            <section class="article-content container">
+                {{ .Content }}
+            </section>
+        </article>
+    </main>
+
+    <footer role="contentinfo">
+      <div class="container" data-animate>
+        <p><strong>세붕이</strong> — 세명컴퓨터고등학교의 개발 문화를 만들어 갑니다.</p>
+      </div>
+    </footer>
+
+    <script src="../../public/js/main.js" defer></script>
+</body>
+</html>
