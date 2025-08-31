@@ -3,23 +3,50 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>세붕 | about</title>
+
+    <!-- Primary SEO -->
+    <title>세붕이 | About</title>
     <meta
       name="description"
-      content="세명컴퓨터고등학교의 선후배가 함께 만드는 건강한 개발 문화. 세미나 · 프로젝트 · 교류로 성장합니다."
+      content="세명컴퓨터고등학교의 선후배가 함께 만드는 건강한 개발 문화. 세미나·프로젝트·교류로 성장합니다."
     />
-    <meta property="og:title" content="세명컴퓨터고등학교 개발 문화" />
-    <meta property="og:description" content="세명컴퓨터고의 선후배가 함께 만드는 건강한 개발 문화." />
+    <link rel="canonical" href="https://sebuung.kr/about" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+
+    <!-- Open Graph / Social Preview -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="세붕이" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:url" content="https://sebuung.kr/about" />
+    <meta property="og:title" content="세붕이 — 세명컴퓨터고등학교 개발 문화" />
+    <meta property="og:description" content="세명컴퓨터고의 선후배가 함께 만드는 건강한 개발 문화." />
+    <meta property="og:image" content="public/img/logo_white.png" />
+    <meta property="og:image:secure_url" content="https://sebuung.kr/og/og-image-1200x630.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="세붕이 — 세명컴퓨터고등학교 개발 문화" />
+
+    <!-- Theming -->
     <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b0d11" />
+
+    <!-- Preconnect/DNS Prefetch for critical origins -->
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="icon" href="public/logo_white.png" />
+
+    <!-- Fonts -->
     <link
       rel="stylesheet"
-      as="style"
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css"
     />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="public/img/logo_white.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="public/img/logo_white.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="public/img/logo_white.png" color="#3182f6" />
+    <meta name="msapplication-TileColor" content="#3182f6" />
 
     <style>
       /* ========== Reset & Base ========== */
@@ -473,6 +500,18 @@
         }
       }
     </style>
+
+    <!-- JSON-LD: Organization (update URLs/paths to match your domain) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "세붕이",
+        "url": "https://sebuung.kr/",
+        "logo": "https://sebuung.kr/icons/android-chrome-512x512.png",
+        "sameAs": ["https://open.kakao.com/o/gXogQnJe"]
+      }
+    </script>
   </head>
   <body>
     <a class="skip" href="#main">본문으로 건너뛰기</a>
@@ -481,7 +520,14 @@
       <div class="container nav__inner">
         <div class="brand" aria-label="세명컴퓨터고등학교 개발 문화">
           <span class="logo-wrap" aria-hidden="true">
-            <img src="logo_white.png" class="logo" alt="세붕이 로고" />
+            <img
+              src="public/img/logo_white.png"
+              class="logo"
+              alt="세붕이 로고"
+              width="22"
+              height="22"
+              decoding="async"
+            />
           </span>
           <span>세붕이</span>
         </div>
