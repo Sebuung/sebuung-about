@@ -636,11 +636,35 @@
           </span>
           <span>세붕이</span>
         </div>
-        <button class="nav__toggle" id="nav-toggle" aria-label="메뉴 열기" aria-controls="nav-menu" aria-expanded="false">
-          <svg class="icon icon--menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <button
+          class="nav__toggle"
+          id="nav-toggle"
+          aria-label="메뉴 열기"
+          aria-controls="nav-menu"
+          aria-expanded="false"
+        >
+          <svg
+            class="icon icon--menu"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
             <path d="M3 6h18M3 12h18M3 18h18" />
           </svg>
-          <svg class="icon icon--close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg
+            class="icon icon--close"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
             <path d="M6 6l12 12M6 18L18 6" />
           </svg>
         </button>
@@ -781,6 +805,7 @@
               <span class="name">윤현우</span>
               <span class="name">김재민</span>
               <span class="name">이진형</span>
+              <span class="name">박민성</span>
             </div>
           </section>
 
@@ -949,7 +974,7 @@
         if (!navHeader || !navToggle) return;
         navHeader.dataset.open = open ? "true" : "false";
         navToggle.setAttribute("aria-expanded", open ? "true" : "false");
-  navToggle.setAttribute("aria-label", open ? "메뉴 닫기" : "메뉴 열기");
+        navToggle.setAttribute("aria-label", open ? "메뉴 닫기" : "메뉴 열기");
       }
       navToggle?.addEventListener("click", () => {
         const isOpen = navHeader?.dataset.open === "true";
