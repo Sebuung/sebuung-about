@@ -1,4 +1,4 @@
-module sebuung-blog
+module sebuung-web
 
 go 1.24.5
 
