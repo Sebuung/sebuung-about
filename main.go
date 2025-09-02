@@ -14,7 +14,10 @@ import (
 	"time"
 
 	"github.com/adrg/frontmatter"
+	wikitable "github.com/movsb/goldmark-wiki-table"
 	"github.com/yuin/goldmark"
+	highlighting "github.com/yuin/goldmark-highlighting/v2"
+
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
 	"github.com/yuin/goldmark/renderer/html"
@@ -66,7 +69,12 @@ func main() {
 	}
 
 	md := goldmark.New(
-		goldmark.WithExtensions(extension.GFM),
+		goldmark.WithExtensions(extension.GFM,
+			highlighting.NewHighlighting(
+				highlighting.WithStyle("monokai"),
+			),
+			wikitable.New(),
+		),
 		goldmark.WithParserOptions(parser.WithAutoHeadingID()),
 		goldmark.WithRendererOptions(html.WithHardWraps(), html.WithUnsafe()),
 	)
