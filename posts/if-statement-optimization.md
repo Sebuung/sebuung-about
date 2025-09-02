@@ -1,5 +1,5 @@
 ---
-title: 'What "if"?'
+title: "if문을 잘쓰면 아저씨들이 좋아해준다."
 author:
   name: "MyungSub0519"
   url: "https://github.com/MyungSub0519"
